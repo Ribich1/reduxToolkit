@@ -1,17 +1,13 @@
-import { createStore, combineReducers } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
 import { accountReducer } from './accountSlice';
 import { localeReducer } from './localeSlice';
+import { configureStore } from '@reduxjs/toolkit';
 
 // const initialState = { account: { balance: 0 }, locale: { lang: 'uk' } };
 
 
 
 
-const rootReducer = combineReducers({
-  account: accountReducer,
-  locale: localeReducer,
-});
+
 
 // const rootReducer = (state = initialState, action) => {
 //   switch (action.type) {
@@ -37,7 +33,13 @@ const rootReducer = combineReducers({
 //   }
 // };
 
-const enhancer = devToolsEnhancer();
 
-export const store = createStore(rootReducer, enhancer);
+
+export const store = configureStore({
+  reducer: {
+    account: accountReducer,
+    locale: localeReducer,
+  },
+});
+
 
